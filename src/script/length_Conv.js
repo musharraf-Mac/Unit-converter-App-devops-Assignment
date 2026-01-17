@@ -9,6 +9,32 @@ const units = {
   temperature: ["Celsius", "Fahrenheit", "Kelvin"]
 };
 
+// Save conversion to database via PHP API
+function saveToDatabase(record) {
+  fetch('api/save_conversion.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      input_value: record.inputValue,
+      from_unit: record.fromUnit,
+      to_unit: record.toUnit,
+      result: record.result,
+      conversion_type: record.type
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      console.error('Error saving conversion:', data.error);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
 // Load units on page load
 updateUnits();
 
@@ -48,6 +74,15 @@ function convert() {
   }
 
   result.innerText = `${value} ${from} = ${convertedValue.toFixed(2)} ${to}`;
+  
+  // Save to database
+  saveToDatabase({
+    inputValue: value,
+    fromUnit: from,
+    toUnit: to,
+    result: convertedValue.toFixed(2),
+    type: type.charAt(0).toUpperCase() + type.slice(1)
+  });
 }
 
 // Length Conversion
