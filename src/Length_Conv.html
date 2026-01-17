@@ -1,41 +1,47 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Length Unit Converter</title>
-    <link rel="stylesheet" href="Length_Conv.css">
+  <meta charset="UTF-8" />
+  <title>Unit Converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style/length_Conv.css" />
 </head>
 <body>
-    <h1>Length Unit Converter</h1>
-    <form id="lengthConverter">
-        <label for="inputValue">Enter Value:</label>
-        <input type="number" id="inputValue" name="inputValue" required><br><br>
 
-        <label for="fromUnit">From Unit:</label>
-        <select id="fromUnit" name="fromUnit">
-            <option value="meters">Meters</option>
-            <option value="kilometers">Kilometers</option>
-            <option value="centimeters">Centimeters</option>
-            <option value="millimeters">Millimeters</option>
-            <option value="inches">Inches</option>
-            <option value="feet">Feet</option>
-            <option value="yards">Yards</option>
-            <option value="miles">Miles</option>
-        </select><br><br>
+    <div class="container">
+    <h1>Unit Converter</h1>
 
-        <label for="toUnit">To Unit:</label>
-        <select id="toUnit" name="toUnit">
-            <option value="meters">Meters</option>
-            <option value="kilometers">Kilometers</option>
-            <option value="centimeters">Centimeters</option>
-            <option value="millimeters">Millimeters</option>
-            <option value="inches">Inches</option>
-            <option value="feet">Feet</option>
-            <option value="yards">Yards</option>
-            <option value="miles">Miles</option>
-        </select><br><br>
+    
+    <div class="field">
+      <label for="type">Conversion Type</label>
+      <select id="type">
+        <option value="length">Length</option>
+        <option value="weight">Weight</option>
+        <option value="temperature">Temperature</option>
+      </select>
+    </div>
 
-        <button type="button" id="convertBtn">Convert</button>
-    </form>
-    <div id="result"></div>
-    <script src="Length_Conv.js"></script>
+    <div class="field">
+      <label for="value">Value</label>
+      <input type="number" id="value" placeholder="Enter value" />
+    </div>
+
+    
+    <div class="field">
+      <label for="fromUnit">From</label>
+      <select id="fromUnit"></select>
+    </div>
+
+    <div class="field">
+      <label for="toUnit">To</label>
+      <select id="toUnit"></select>
+    </div>
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script src="script/length_Conv.js"></script>
 </body>
 </html>
