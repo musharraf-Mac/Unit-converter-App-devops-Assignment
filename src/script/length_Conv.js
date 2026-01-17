@@ -1,103 +1,97 @@
-// Unit conversion data
+const typeSelect = document.getElementById("type");
+const fromUnit = document.getElementById("fromUnit");
+const toUnit = document.getElementById("toUnit");
+const result = document.getElementById("result");
+
 const units = {
-  length: {
-    mm: 0.001,
-    cm: 0.01,
-    m: 1,
-    km: 1000,
-    in: 0.0254,
-    ft: 0.3048,
-    yd: 0.9144,
-    mi: 1609.344
-  },
-  weight: {
-    mg: 0.000001,
-    g: 0.001,
-    kg: 1,
-    oz: 0.0283495,
-    lb: 0.453592,
-    ton: 1000
-  },
-  temperature: {
-    C: 'Celsius',
-    F: 'Fahrenheit',
-    K: 'Kelvin'
-  }
+  length: ["Meter", "Kilometer", "Centimeter"],
+  weight: ["Kilogram", "Gram", "Pound"],
+  temperature: ["Celsius", "Fahrenheit", "Kelvin"]
 };
 
-// Function to update unit options based on conversion type
+// Load units on page load
+updateUnits();
+
+// Change units when type changes
+typeSelect.addEventListener("change", updateUnits);
+
 function updateUnits() {
-  const type = document.getElementById('type').value;
-  const fromUnit = document.getElementById('fromUnit');
-  const toUnit = document.getElementById('toUnit');
+  const type = typeSelect.value;
+  fromUnit.innerHTML = "";
+  toUnit.innerHTML = "";
 
-  fromUnit.innerHTML = '';
-  toUnit.innerHTML = '';
-
-  for (const unit in units[type]) {
-    const option1 = document.createElement('option');
-    option1.value = unit;
-    option1.text = unit;
-    fromUnit.appendChild(option1);
-
-    const option2 = document.createElement('option');
-    option2.value = unit;
-    option2.text = unit;
-    toUnit.appendChild(option2);
-  }
+  units[type].forEach(unit => {
+    fromUnit.innerHTML += `<option value="${unit}">${unit}</option>`;
+    toUnit.innerHTML += `<option value="${unit}">${unit}</option>`;
+  });
 }
 
-// Function to convert units
 function convert() {
-  const type = document.getElementById('type').value;
-  const value = parseFloat(document.getElementById('value').value);
-  const fromUnit = document.getElementById('fromUnit').value;
-  const toUnit = document.getElementById('toUnit').value;
-  const resultElement = document.getElementById('result');
+  const value = parseFloat(document.getElementById("value").value);
+  const type = typeSelect.value;
+  const from = fromUnit.value;
+  const to = toUnit.value;
 
   if (isNaN(value)) {
-    resultElement.textContent = 'Please enter a valid number';
+    result.innerText = "Please enter a valid number";
     return;
   }
 
-  let result;
+  let convertedValue;
 
-  if (type === 'temperature') {
-    result = convertTemperature(value, fromUnit, toUnit);
+  if (type === "length") {
+    convertedValue = convertLength(value, from, to);
+  } else if (type === "weight") {
+    convertedValue = convertWeight(value, from, to);
   } else {
-    const fromValue = units[type][fromUnit];
-    const toValue = units[type][toUnit];
-    result = (value * fromValue) / toValue;
+    convertedValue = convertTemperature(value, from, to);
   }
 
-  resultElement.textContent = `${value} ${fromUnit} = ${result.toFixed(4)} ${toUnit}`;
+  result.innerText = `${value} ${from} = ${convertedValue.toFixed(2)} ${to}`;
 }
 
-// Function to convert temperature
+// Length Conversion
+function convertLength(value, from, to) {
+  let meter;
+
+  if (from === "Kilometer") meter = value * 1000;
+  else if (from === "Centimeter") meter = value / 100;
+  else meter = value;
+
+  if (to === "Kilometer") return meter / 1000;
+  if (to === "Centimeter") return meter * 100;
+  return meter;
+}
+
+// Weight Conversion
+function convertWeight(value, from, to) {
+  let kg;
+
+  if (from === "Gram") kg = value / 1000;
+  else if (from === "Pound") kg = value * 0.453592;
+  else kg = value;
+
+  if (to === "Gram") return kg * 1000;
+  if (to === "Pound") return kg / 0.453592;
+  return kg;
+}
+
+// Temperature Conversion
 function convertTemperature(value, from, to) {
-  let celsius;
+  if (from === to) return value;
 
-  // Convert to Celsius first
-  if (from === 'F') {
-    celsius = (value - 32) * 5 / 9;
-  } else if (from === 'K') {
-    celsius = value - 273.15;
-  } else {
-    celsius = value;
+  if (from === "Celsius") {
+    if (to === "Fahrenheit") return (value * 9/5) + 32;
+    if (to === "Kelvin") return value + 273.15;
   }
 
-  // Convert from Celsius to target
-  if (to === 'F') {
-    return (celsius * 9 / 5) + 32;
-  } else if (to === 'K') {
-    return celsius + 273.15;
-  } else {
-    return celsius;
+  if (from === "Fahrenheit") {
+    if (to === "Celsius") return (value - 32) * 5/9;
+    if (to === "Kelvin") return (value - 32) * 5/9 + 273.15;
+  }
+
+  if (from === "Kelvin") {
+    if (to === "Celsius") return value - 273.15;
+    if (to === "Fahrenheit") return (value - 273.15) * 9/5 + 32;
   }
 }
-
-// Initialize units on page load
-document.addEventListener('DOMContentLoaded', updateUnits);
-
-// Update units when type changes
-document.getElementById('type').addEventListener('change', updateUnits);
