@@ -8,6 +8,7 @@
   <script src="script/length_Conv.js" defer></script>
 </head>
 <body>
+  <button id="historyBtn" onclick="showHistory()">History</button>
 
     <div class="container">
     <h1>Unit Converter</h1>
@@ -42,7 +43,16 @@
 
     <p id="result"></p>
   </div>
-<button> History</button>
-  
+
+  <!-- History Popup -->
+  <div id="historyPopup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closeHistory()">&times;</span>
+      <h2>Conversion History</h2>
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <script src="script/length_Conv.js"></script>
 </body>
 </html>

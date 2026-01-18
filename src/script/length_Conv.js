@@ -130,3 +130,41 @@ function convertTemperature(value, from, to) {
     if (to === "Fahrenheit") return (value - 273.15) * 9/5 + 32;
   }
 }
+
+// History functions
+function showHistory() {
+  fetch('api/get_history.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error('Error fetching history:', data.error);
+        return;
+      }
+      
+      const historyList = document.getElementById('historyList');
+      historyList.innerHTML = '';
+      
+      if (data.length === 0) {
+        historyList.innerHTML = '<p>No conversion history found.</p>';
+      } else {
+        data.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'history-item';
+          itemDiv.innerHTML = `
+            <strong>${item.conversion_type}:</strong> ${item.input_value} ${item.from_unit} = ${item.result} ${item.to_unit}<br>
+            <small>${new Date(item.created_at).toLocaleString()}</small>
+          `;
+          historyList.appendChild(itemDiv);
+        });
+      }
+      
+      document.getElementById('historyPopup').style.display = 'block';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+function closeHistory() {
+  document.getElementById('historyPopup').style.display = 'none';
+}
