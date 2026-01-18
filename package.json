@@ -1,0 +1,20 @@
+{
+  "name": "unit-converter-app-devops-assignment",
+  "version": "1.0.0",
+  "description": "- **Student 1:** [Abdur Rahman Musharraf] - [ITBIN-2313-0067] - Role: [Devop engineer]\r - **Student 2:** [Kannagi Theebapriya] - [ITBIN-2313-0116] - Role: [Full stack developer]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/musharraf-Mac/Unit-converter-App-devops-Assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/musharraf-Mac/Unit-converter-App-devops-Assignment/issues"
+  },
+  "homepage": "https://github.com/musharraf-Mac/Unit-converter-App-devops-Assignment#readme"
+}
