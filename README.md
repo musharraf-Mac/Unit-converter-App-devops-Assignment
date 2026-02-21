@@ -46,8 +46,13 @@ A web-based Unit Converter Application that enables users to seamlessly convert 
 ## Setup instruction
 
 ### Prerequisites
-- Node.js (version 18 or higher)
-- Git
+- [Docker](https://docs.docker.com/get-docker/) (version 20.10 or higher)
+- [Docker Compose](https://docs.docker.com/compose/install/) (version 2.0 or higher)
+- [Git](https://git-scm.com/)
+
+> **Optional (for local development without Docker):**
+> - Node.js (v18 or higher)
+
 
 ### Installation
 ```bash
