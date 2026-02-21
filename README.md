@@ -57,11 +57,6 @@ git clone https://github.com/musharraf-Mac/Unit-converter-App-devops-Assignment
 # Navigate to project directory
 cd Unit-converter-App-devops-Assignment
 
-# Deployment Process
-This project uses GitHub Actions for Continuous Integration and Continuous Deployment - **Trigger:** Automatically runs on every `push` or `pull request` to `main` and `develop` branches
-- **Steps:** Code checkout → Build Docker image → Run tests → Deploy to Vercel
-- **Deployment:** Successful builds on `main` are automatically deployed to Vercel
-
 #Build the Docker Image
 docker build -t unit-converter-app
 
@@ -69,7 +64,7 @@ docker build -t unit-converter-app
 docker-compose up --build
 
 # To see the running app 
-this at your browser address : "http://localhost:8080"
+Enter this at your browser address : "http://localhost:8080"
 
 #To stop the app
 docker-compose down
@@ -79,6 +74,11 @@ We faced some critical errors while deployement. It is took many of my time to f
 
 # Build status
 ```  
+# Deployment Process
+This project uses GitHub Actions for Continuous Integration and Continuous Deployment - **Trigger:** Automatically runs on every `push` or `pull request` to `main` and `develop` branches
+- **Steps:** Code checkout → Build Docker image → Run tests → Deploy to Vercel
+- **Deployment:** Successful builds on `main` are automatically deployed to Vercel
+
 ## Docker Commands Reference
 
 | Command | Description |
@@ -95,7 +95,6 @@ We faced some critical errors while deployement. It is took many of my time to f
 
 - The application runs on **port 80** inside the container.
 - It is mapped to **port 8080** on your local machine (configurable in `docker-compose.yml`).
-
 
 
 
