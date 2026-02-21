@@ -69,9 +69,8 @@ docker build -t unit-converter-app
 docker-compose up --build
 
 # To see the running app 
-```
-this at your browser address : **http://localhost:8080**
-```bash
+this at your browser address : "http://localhost:8080"
+
 #To stop the app
 docker-compose down
 
@@ -96,6 +95,7 @@ We faced some critical errors while deployement. It is took many of my time to f
 
 - The application runs on **port 80** inside the container.
 - It is mapped to **port 8080** on your local machine (configurable in `docker-compose.yml`).
+
 
 
 
