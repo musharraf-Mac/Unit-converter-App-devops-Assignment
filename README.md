@@ -57,22 +57,44 @@ git clone https://github.com/musharraf-Mac/Unit-converter-App-devops-Assignment
 # Navigate to project directory
 cd Unit-converter-App-devops-Assignment
 
-# install dependencies
-npm install
+#Build the Docker Image
+docker build -t unit-converter-app
 
-# Run development server
-npm run dev
+#Run with docker compose (Recommanded)
+docker-compose up --build
 
-# Deployment Process
-This project uses GitHub Actions for Continuous Integration and Continuous Deployment (CI/CD). The pipeline automatically triggers on every push or pull request to ensure code quality and seamless deployment.
+# To see the running app 
+Enter this at your browser address : "http://localhost:8080"
+
+#To stop the app
+docker-compose down
 
 # Challanges Faced
 We faced some critical errors while deployement. It is took many of my time to fix that. 
 
 # Build status
----
 ```  
+# Deployment Process
+This project uses GitHub Actions for Continuous Integration and Continuous Deployment - **Trigger:** Automatically runs on every `push` or `pull request` to `main` and `develop` branches
+- **Steps:** Code checkout → Build Docker image → Run tests → Deploy to Vercel
+- **Deployment:** Successful builds on `main` are automatically deployed to Vercel
 
+## Docker Commands Reference
+
+| Command | Description |
+|--------|-------------|
+| `docker compose up --build` | Build and start the container |
+| `docker compose up -d` | Start in detached (background) mode |
+| `docker compose down` | Stop and remove containers |
+| `docker compose logs -f` | View live container logs |
+| `docker ps` | List running containers |
+| `docker build -t unit-converter-app .` | Build image manually |
+| `docker run -p 8080:80 unit-converter-app` | Run image manually |
+
+## Port Configuration
+
+- The application runs on **port 80** inside the container.
+- It is mapped to **port 8080** on your local machine (configurable in `docker-compose.yml`).
 
 
 
