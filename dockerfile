@@ -1,8 +1,17 @@
 # Use lightweight Nginx image to serve static files
 FROM nginx:alpine
 
+# Set working directory
+WORKDIR /usr/share/nginx/html
+
 # Copy frontend files to Nginx's default serving directory
-COPY ./src /usr/share/nginx/html
+COPY ./src .
+
+# Copy nginx configuration
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 80
 EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
