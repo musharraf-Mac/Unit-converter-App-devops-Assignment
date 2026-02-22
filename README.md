@@ -20,7 +20,6 @@ A web-based Unit Converter Application that enables users to seamlessly convert 
 - **Weight Conversion:** Convert between kilograms, grams, pound
 - **Temperature Conversion:** Convert between Celsius, Fahrenheit, and Kelvin
 - **User-Friendly Interface:** Clean and responsive design for easy navigation
-- **History:** Users can view their past conversions
 
 ## Branch Strategy
 - `main` - Production branch
@@ -28,6 +27,14 @@ A web-based Unit Converter Application that enables users to seamlessly convert 
 - `feature/*` - Feature development branches
 
 ## Individual Contributions
+
+| Abdur Rahman Musharraf | Kanngi Theebapriya |
+|---------------------|-----------------|
+| Repository setup and configuration | Created UI for the App |
+| Github Actions CI/CD pipeline implementation | Created all the conversion features |
+| Deployment setup and management | Committed all the application | 
+| Created database for it | Created history feature |
+| Created PHP file for save all the entries to the database | Created pull request for push all the feature code implementation(Develop) branch |
 
 ## Abdur Rahman Musharraf
 - Repository setup and configuration
