@@ -27,15 +27,6 @@ A web-based Unit Converter Application that enables users to seamlessly convert 
 - `feature/*` - Feature development branches
 
 ## Individual Contributions
-
-| Abdur Rahman Musharraf | Kanngi Theebapriya |
-|---------------------|-----------------|
-| Repository setup and configuration | Created UI for the App |
-| Github Actions CI/CD pipeline implementation | Created all the conversion features |
-| Deployment setup and management | Committed all the application | 
-| Created database for it | Created history feature |
-| Created PHP file for save all the entries to the database | Created pull request for push all the feature code implementation(Develop) branch |
-
 ## Abdur Rahman Musharraf
 - Repository setup and configuration
 - Github Actions CI/CD pipeline implementation
@@ -107,6 +98,7 @@ This project uses GitHub Actions for Continuous Integration and Continuous Deplo
 
 - The application runs on **port 80** inside the container.
 - It is mapped to **port 8080** on your local machine (configurable in `docker-compose.yml`).
+
 
 
 
